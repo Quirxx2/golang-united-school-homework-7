@@ -21,6 +21,8 @@ func init() {
 
 // WRITE YOUR CODE BELOW
 
+const tMatrix = "1 3 5\n7 9 11\n13 15 17"
+
 func TestPeopleLen(t *testing.T) {
 	var tData = []struct {
 		fName     string
@@ -150,7 +152,7 @@ func TestNewM(t *testing.T) {
 }
 
 func TestRowsM(t *testing.T) {
-	matrix, _ := New("1 3 5\n7 9 11\n13 15 17")
+	matrix, _ := New(tMatrix)
 	rows := matrix.Rows()
 	if len(rows) != 3 {
 		t.Errorf("got matrix rows %d, expected 3", len(rows))
@@ -164,7 +166,7 @@ func TestRowsM(t *testing.T) {
 }
 
 func TestColsM(t *testing.T) {
-	matrix, _ := New("1 3 5\n7 9 11\n13 15 17")
+	matrix, _ := New(tMatrix)
 	columns := matrix.Cols()
 	if len(columns) != 3 {
 		t.Errorf("got matrix columns %d, expected 3", len(columns))
@@ -178,7 +180,7 @@ func TestColsM(t *testing.T) {
 }
 
 func TestSetM(t *testing.T) {
-	matrix, _ := New("1 3 5\n7 9 11\n13 15 17")
+	matrix, _ := New(tMatrix)
 	var tData = []struct {
 		fName    string
 		row      int
