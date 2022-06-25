@@ -171,7 +171,7 @@ func TestColsM(t *testing.T) {
 	if len(columns) != 3 {
 		t.Errorf("got matrix columns %d, expected 3", len(columns))
 	}
-	if len(columns[0]) != 2 {
+	if len(columns[0]) != 3 {
 		t.Errorf("got matrix columns number %d, expected 3", len(columns[0]))
 	}
 	if columns[0][0] != 1 {
@@ -203,7 +203,7 @@ func TestSetM(t *testing.T) {
 			false,
 		},
 		{
-			"row number out is of index",
+			"row number is out of index",
 			5,
 			1,
 			100,
@@ -227,13 +227,13 @@ func TestSetM(t *testing.T) {
 	for _, tcases := range tData {
 		t.Run(tcases.fName, func(t *testing.T) {
 			changed := matrix.Set(tcases.row, tcases.column, tcases.value)
-			switch changed {
-			case tcases.expected:
+			if changed != tcases.expected {
+				t.Errorf("got %t, expected %t", changed, tcases.expected)
+			}
+			if changed == true {
 				if matrix.Rows()[tcases.row][tcases.column] != tcases.value {
 					t.Errorf("got %d, expected %d", matrix.Rows()[tcases.row][tcases.column], tcases.value)
 				}
-			default:
-				t.Errorf("got %t, expected %t", changed, tcases.expected)
 			}
 		})
 	}
